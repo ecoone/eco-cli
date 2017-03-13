@@ -1,0 +1,239 @@
+//运营系统主文件
+eco.namespace("mob");
+mob.meta({
+    name:"mob运营系统",
+    author:"运营开发组",
+    version:"0.0.1",
+    description:"主要是运营前端系统",
+    participator:"运营开发组"
+});
+/**共有资源配置**/
+
+/**公有方法**/
+//获取链接参数
+mob.getQueryString = function(name){
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return decodeURIComponent(r[2]);
+    return null;    
+};
+
+//px单位数值转换为rem单位数值
+mob.pxToRem = function(pxValue){
+    var docEl = document.documentElement,
+        width = docEl.getBoundingClientRect().width,//当前页面宽度
+        baseWidth = 640,
+        rootFontSize = 100,//默认根字体大小
+        curFontSize = width / (baseWidth / rootFontSize),//当前页面根字体大小
+        remValue = pxValue / curFontSize;
+
+    return remValue;
+};
+
+//当前根字体大小   width/(defaultWidth/defaultRootFontSize)
+mob.rootFontSize = (document.documentElement.getBoundingClientRect().width/(640/100));
+
+//rem单位数值转换为px 
+mob.remToPx = function(remValue){
+    return remValue*mob.rootFontSize;
+};
+
+//设置cookie ,cookie默认保存30天
+mob.setCookie = function(name,value,expires,path,domain,secure){
+    var cookieText = encodeURIComponent(name) + "=" + encodeURIComponent(value);
+    //失效时间，GMT时间格式
+    if(!expires) {
+        expires = new Date(); 
+        expires.setTime(expires.getTime() + 30*24*60*60*1000); 
+    }
+    if (expires instanceof Date) {
+        cookieText += "; expires=" + expires.toGMTString();
+    }
+    if (path) {
+        cookieText += "; path=" + path;
+    }
+    if(!domain) domain = '.tuniu.com';
+    if (domain) {
+        cookieText += "; domain=" + domain;
+    }
+    if (secure) {
+        cookieText += "; secure";
+    }
+    document.cookie = cookieText;
+}
+
+//获取cookie
+mob.getCookie = function(key){
+    var arr = document.cookie.match(new RegExp('(^| )' + key + '=([^;]*)(;|$)'));
+    if (arr !== null) {
+        return (arr[2]);
+    } else {
+        return '';
+    }
+}
+
+//是否是app环境
+mob.isApp = (function(){
+    var device = parseInt(mob.getCookie('deviceType'), 10); 
+    return (device==0||device==1);
+})();
+
+//是否是微信环境   
+mob.isWeixin = (function(){
+ return navigator.userAgent.toLowerCase().indexOf('micromessenger') > -1;
+})();
+
+//是否是M站环境
+mob.isM=(function(){
+   return (!mob.isApp&&!mob.isWeixin);
+})();
+
+//fta统计
+mob.fta = function(taName){
+    var gaName = '/'+taName.replace(new RegExp(":","gm"), '/');
+    window.FTA && window.FTA("",taName,"",gaName);
+}
+
+/***********brige相关***********/
+mob.initWebviewBridge = function(){
+    if(mob.webviewBridgeInited){
+        return;
+    }
+    WebViewJavascriptBridge.init(function(message, responseCallback) {
+
+    })
+    mob.webviewBridgeInited=true;
+}
+
+mob.webviewBridgeReady = function(fn){
+    if (window.WebViewJavascriptBridge) {
+        mob.initWebviewBridge();
+        fn(WebViewJavascriptBridge);
+    } else {
+        document.addEventListener('WebViewJavascriptBridgeReady', function() {
+            mob.initWebviewBridge();
+            fn(WebViewJavascriptBridge);
+        }, false)
+    }
+}
+
+mob.callBridge = function(method,data,callback){
+    mob.webviewBridgeReady(function(bridge){
+        bridge.callHandler(method, data, callback);
+    });
+} 
+
+//获取分屏模式状态
+mob.getMultiWindowStatus = function(callback){
+    mob.callBridge("getMultiWindowStatus",{},callback);
+}
+
+//游戏分屏模式处理
+mob.setMaskInMultiWindow = function(){
+    //修改遮罩样式
+    function processMaskInMultiWindow(data){
+        data = JSON.parse(data);
+        if(!data) return;
+        var mitiWindowMask = document.getElementById("mitiwindow-mask");
+        //分屏模式
+       if(data.status==1){
+           mitiWindowMask.style.display="block";
+       }else{
+           mitiWindowMask.style.display="none";
+       }
+    }
+
+    //检测分屏模式
+    mob.webviewBridgeReady(function(webviewBridge){
+        var body = document.body;
+        var div = document.createElement("div");
+        div.id = "mitiwindow-mask";
+        div.style.cssText='z-index:9999;position:fixed;left:0px;top:0px;width:100%;height:100%;line-height:100%;text-align:center;background:rgba(0,0,0,0.5);font-size:18px;color:#fff;padding-top: 50%;display:none;'; 
+        div.innerHTML = "当前处于分屏模式下，页面不可用";
+        body.appendChild(div);
+
+        mob.getMultiWindowStatus(function(data){
+            processMaskInMultiWindow(data);
+        });
+
+        webviewBridge.registerHandler('onMultiWindowsStatusChange',function(data){
+            processMaskInMultiWindow(data);
+        });
+    });
+}
+
+/***相关链接获取***/
+
+//cdn域名
+mob.cdnHostUrl = window.eventConfig?window.eventConfig.cdnHost:"";
+
+//cdn资源根目录，和cdn host一样，只有在非测试环境下多了一个site目录
+mob.resBaseUrl = window.eventConfig?window.eventConfig.resBaseUrl:"";
+
+//获取当前项目的资源目录
+mob.getResUrl = function(prjName,distFlag){
+    var catalog = "src";
+    if(distFlag) catalog = "dist";
+   return window.eventConfig?(window.eventConfig.resBaseUrl+'/event/'+prjName+'/dist/'): "../../"+prjName+"/"+catalog+"/";
+}
+
+//获取host
+mob.getHost=function(){
+    var host=window.location.host;
+    var protocol = window.location.protocol;
+    if(host.indexOf("tuniu.com")!=-1){
+        if(host.indexOf("dynamic")!=0){
+            host="dynamic."+host;
+        }
+        host=protocol+"//"+host;
+    }
+    else{
+        host=protocol+"//dynamic.m.tuniu.com";
+    }
+    return host;
+}
+
+//从链接中获取P值
+mob.getPFromURL = function(){
+    var paramArr = window.location.hash.slice(1).split("&").concat(window.location.search.slice(1).split("&"));
+    var hashObj = {};
+    for (var i = 0; i < paramArr.length; i++) {
+        var keyValue = paramArr[i].split("=");
+        hashObj[keyValue[0]] = keyValue[1];
+    }
+    return hashObj.p;
+}
+//更新p值和400电话号码
+mob._updatePvalueandTel = function(){
+    var host= mob.getHost();
+    function $$(id) {
+        return document.getElementById(id);
+    }
+    var param={
+        partner: {
+            p: mob.getPFromURL()||"",
+            referer: encodeURIComponent(document.referrer)
+        }
+    };
+    param.phone="";
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", host+"/event/mGlobal/index?data="+encodeURIComponent(JSON.stringify(param)));
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var json = JSON.parse(xhr.responseText);
+            if (json.success) {
+                json = json.data;
+                var telNumber = json.phone;
+                if(telNumber){
+                    localStorage.setItem("400phone",telNumber);
+                }
+                if (telNumber && $$("telConsult")) {
+                    $$("telConsult").href = "tel:" + telNumber;
+                }
+            }
+        }
+    }
+    xhr.withCredentials = true;
+    xhr.send(null);
+};
+mob._updatePvalueandTel();

@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= projectName %> <%= pageName %></title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-retina.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!--DEV环境加载样式-->
+    <link rel="stylesheet" href="../../common/css/base/reset.css"/>
+    <link rel="stylesheet" href="../../<%= projectName %>/src/css/<%= pageName %>.css"/>
+    <!--PRD环境加载样式-->
+    <!--/dist/css/package_<%= pageName %>.min.cssPRD环境中eco打包出样式在加载这个文件，可能不需要因为模块没有样式-->
+    <!--<link rel="stylesheet" href="../../common/css/base/reset.min.css"/>
+    <link rel="stylesheet" href="../../<%= projectName %>/dist/css/<%= pageName %>.min.css"/>
+    <link rel="stylesheet" href="../../<%= projectName %>/dist/css/package_<%= pageName %>.min.css"/>
+    -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <script>
+    (function() {
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            rem = width / (BASE_WIDTH / ROOT_FONT_SIZE);
+            docEl.style.fontSize = rem + "px";
+        }
+        var tid = null, docEl = document.documentElement, BASE_WIDTH = 640, ROOT_FONT_SIZE = 100;
+        refreshRem();
+         window.addEventListener("resize", function() {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+    })();
+    </script>
+</head>
+<body>
+<div class="wrapper">
+<!--用户代码开发区域-->
+在这里输入代码
+</div>
+<!--DEV环境-->
+<!--eco.pasckage.js具有模块打包功能-->
+<script type="text/javascript" src="../../common/eco/lib/ecojs/eco.package.js"></script>
+<script type="text/javascript" src="../../common/eco/config/ecoConfig.js"></script>
+<script type="text/javascript" src="../../common/eco/systems/axuer/axuer.js"></script>
+<script type="text/javascript" src="../../<%= projectName %>/src/js/<%= pageName %>.js"></script>
+
+<!--PRD环境-->
+<!--/dist/js/package_<%= pageName %>.min.js依赖模块打包-->
+<!--/dist/js/<%= pageName %>.min.js项目主模块加载模块-->
+<!--
+<script type="text/javascript" src="../../common/eco/lib/ecojs/eco.min.js"></script>
+<script type="text/javascript" src="../../common/eco/config/ecoConfig.js"></script>
+<script type="text/javascript" src="../../common/eco/systems/axuer/axuer.js"></script>
+<script type="text/javascript" src="../../<%= projectName %>/dist/js/package_<%= pageName %>.min.js"></script>
+<script type="text/javascript" src="../../<%= projectName %>/dist/js/<%= pageName %>.min.js"></script>
+-->
+</body>
+</html>

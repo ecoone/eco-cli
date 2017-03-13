@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input
+END
+Recognizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/Recognizer.js
+END
+Key.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/Key.js
+END
+InputManager.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/InputManager.js
+END
+InputHandler.js
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/InputHandler.js
+END
+Input.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/Input.js
+END
+InputUtils.js
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/InputUtils.js
+END
+Keyboard.js
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/Keyboard.js
+END
+TouchAction.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/TouchAction.js
+END

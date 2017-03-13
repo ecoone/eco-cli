@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title><%= projectName %> <%= pageName %></title>
+    <meta name="keywords" content="途牛旅游网" />
+    <meta name="description" content="途牛旅游网" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-touch-icon-retina.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!--DEV环境加载样式-->
+    <link rel="stylesheet" href="../../common/css/base/reset.css"/>
+    <link rel="stylesheet" href="../../<%= projectName %>/src/css/<%= pageName %>.css"/>
+    <!--PRD环境加载样式-->
+<!--     
+    <link rel="stylesheet" href="../../common/css/base/reset.min.css"/>
+    <link rel="stylesheet" href="../../<%= projectName %>/dist/css/package_<%= pageName %>.min.css"/> -->
+<!--PRD环境中eco打包出样式在加载这个文件-->
+ <!-- <link rel="stylesheet" href="../../<%= projectName %>/dist/css/<%= pageName %>.min.css"/> -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <script>
+    (function() {
+        function refreshRem() {
+            var width = docEl.getBoundingClientRect().width;
+            rem = width / (BASE_WIDTH / ROOT_FONT_SIZE);
+            docEl.style.fontSize = rem + "px";
+        }
+        var tid = null, docEl = document.documentElement, BASE_WIDTH = 640, ROOT_FONT_SIZE = 100;
+        refreshRem();
+         window.addEventListener("resize", function() {
+            clearTimeout(tid);
+            tid = setTimeout(refreshRem, 300);
+        }, false);
+    })();
+    </script>
+</head>
+<body>
+<div class="wx-share" id="shareArea" style="display:none;">
+    <input type="hidden" id="shareTitle" value="title" /> 
+    <input type="hidden" id="shareDesc" value="description" /> 
+    <input type="hidden" id="shareLink" value="sharelink" /> 
+    <img id="shareImg" src="" /> 
+</div> 
+<div class="wrapper">
+<!--用户代码开发区域-->
+</div>
+<!--DEV环境-->
+<script type="text/javascript" src="../../common/eco/lib/ecojs/eco.package.js"></script>
+<script type="text/javascript" src="../../common/eco/config/ecoConfig.js"></script>
+<script type="text/javascript" src="../../common/eco/systems/mob/mob.js"></script>
+<script type="text/javascript" src="../../<%= projectName %>/src/js/<%= pageName %>.js"></script>
+
+<!--PRD环境-->
+<!-- <script type="text/javascript" src="../../common/eco/systems/mob/package_ecoConfigMob.js"></script>
+<script type="text/javascript" src="../../<%= projectName %>/dist/js/package_<%= pageName %>.min.js"></script>
+<script type="text/javascript" src="../../<%= projectName %>/dist/js/<%= pageName %>.min.js"></script> -->
+
+<script src="http://img4.tuniucdn.com/w/j/20150130/common/tac.js,common/ga.js"></script>
+<script type="text/javascript" src="http://img4.tuniucdn.com/w/j/20160105/common/gata.js"></script>
+<script type="text/javascript" src="http://img2.tuniucdn.com/site/wap/js/new/weixin/wx-share.js"></script>
+<script src="//img1.tuniucdn.com/mj/2016061315/global/fta.min.js"></script>
+<script>
+window.addEventListener("load",function(){
+    setTimeout(function(){
+        setGaTaForStaticPage('无线:运营:暑期大促:主会场'); 
+   },1000);
+},false);
+
+mob.fta('无线:运营:暑期大促:主会场');
+</script>
+</body>
+</html>

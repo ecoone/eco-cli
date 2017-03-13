@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/core
+END
+World.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/CDN/!svn/ver/47216/branch/event/common/egame/core/World.js
+END
+Camera.js
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/CDN/!svn/ver/47216/branch/event/common/egame/core/Camera.js
+END
+Game.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/core/Game.js
+END
+StateManager.js
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/CDN/!svn/ver/47216/branch/event/common/egame/core/StateManager.js
+END
+Group.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/CDN/!svn/ver/47466/branch/event/common/egame/core/Group.js
+END
+Time.js
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/CDN/!svn/ver/47216/branch/event/common/egame/core/Time.js
+END
+GameObjectCreator.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/core/GameObjectCreator.js
+END
+RequestAnimationFrame.js
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/CDN/!svn/ver/47216/branch/event/common/egame/core/RequestAnimationFrame.js
+END
+Stage.js
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/core/Stage.js
+END

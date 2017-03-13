@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/input
+END
+SingleTouchInput.js
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/input/SingleTouchInput.js
+END
+MouseInput.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/input/MouseInput.js
+END
+TouchMouseInput.js
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/input/TouchMouseInput.js
+END
+PointerEventInput.js
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/input/PointerEventInput.js
+END
+TouchInput.js
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/input/TouchInput.js
+END

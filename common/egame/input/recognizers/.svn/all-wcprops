@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/recognizers
+END
+PressRecognizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/recognizers/PressRecognizer.js
+END
+PanRecognizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/recognizers/PanRecognizer.js
+END
+TapRecognizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/recognizers/TapRecognizer.js
+END
+SwipeRecognizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/recognizers/SwipeRecognizer.js
+END
+AttrRecognizer.js
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/CDN/!svn/ver/50208/branch/event/common/egame/input/recognizers/AttrRecognizer.js
+END
