@@ -46,22 +46,6 @@ temple目录是用来做项目脚手架的，src目录是开发目录，dist是b
  eg.构建项目p
 
  `gulp build -p test`
- 
- 
-###html压缩
-对html压缩前，请将开发引入的路径注释，打开生产环境引入的路径
-
-eg1.压缩test项目中的html
-
-`gulp chtml  -p test `
-
-eg2.压缩test项目中的html，并打开浏览器
-
-`gulp chtml  -p test --s `
-
-eg2.压缩test项目中的myPage页面
-
-`gulp chtml  -p test -n myPage`
 
 ###启动web服务器
 用于给页面提供web服务器环境，如果有--s那么**静默启动服务器**，--n服务器打开的默认主页，不传就是index.html,如果不传--d打开src目录页面，注意项目根目录在event目录，你可以通过路径直接访问，自动的服务器端口好是3000
